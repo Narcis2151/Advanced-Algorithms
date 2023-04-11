@@ -3,14 +3,6 @@ def determinant(x1, y1, x2, y2, x3, y3):
 
 def result(varfuri, punct):
     nr = 0
-    min_x, max_x, min_y, max_y = varfuri[0][0], varfuri[0][0], varfuri[0][1], varfuri[0][1]
-    for i in range(1, len(varfuri)):
-        min_x = min(min_x, varfuri[i][0])
-        max_x = max(max_x, varfuri[i][0])
-        min_y = min(min_y, varfuri[i][1])
-        max_y = max(max_y, varfuri[i][1])
-    x_outside = (min_x + max_x) / 2 if punct[0] < min_x or punct[0] > max_x else min_x - 1 
-    y_outside = (min_y + max_y) / 2 if punct[1] < min_y or punct[1] > max_y else min_y - 1
 
     for i in range(len(varfuri)):
         p1 = varfuri[i]
