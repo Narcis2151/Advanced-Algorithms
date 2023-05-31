@@ -1,8 +1,8 @@
 def intersectie(inecuatii, punct):
-    xmaxim = 10000000001
-    ymaxim = 10000000001
-    xminim = -10000000001
-    yminim = -10000000001
+    xmax = 10000000001
+    ymax = 10000000001
+    xmin = -10000000001
+    ymin = -10000000001
 
     for inecuatie in inecuatii:
         
@@ -10,42 +10,35 @@ def intersectie(inecuatii, punct):
             continue
 
         if inecuatie[0] == 0:
-            if (-1) * inecuatie[2] / inecuatie[1] < punct[1]:
-                yminim = max(yminim, (-1) * inecuatie[2] / inecuatie[1])
+            if inecuatie[1] < 0:
+                ymin = max(ymin, (-1) * inecuatie[2] / inecuatie[1])
             else:
-                ymaxim = min(ymaxim, (-1) * inecuatie[2] / inecuatie[1])
+                ymax = min(ymax, (-1) * inecuatie[2] / inecuatie[1])
 
         else:
-            if (-1) * inecuatie[2] / inecuatie[0] < punct[0]:
-                xminim = max(xminim, (-1) * inecuatie[2] / inecuatie[0])
+            if inecuatie[0] < 0:
+                xmin = max(xmin, (-1) * inecuatie[2] / inecuatie[0])
             else:
-                xmaxim = min(xmaxim, (-1) * inecuatie[2] / inecuatie[0])
+                xmax = min(xmax, (-1) * inecuatie[2] / inecuatie[0])
     
-    if xmaxim != 10000000001 and ymaxim != 10000000001 and xminim != -10000000001 and yminim != -10000000001:
-        return("YES\n" + "{:.6f}".format((xmaxim - xminim) * (ymaxim - yminim)))
+    if xmax != 10000000001 and ymax != 10000000001 and xmin != -10000000001 and ymin != -10000000001:
+        aria = (xmax - xmin) * (ymax - ymin)
+        return("YES\n" + "{:.6f}".format(aria))
     
     return("NO")
 
 inecuatii = []
-
-n =  int(input())
-
-
-for i in range(n):
-    line = [int(x) for x in input().split()]
-
-    inecuatii.append(line)
-
 puncte = []
-
+n =  int(input())
+for i in range(n):
+    coeficienti = [int(x) for x in input().split()]
+    inecuatii.append(coeficienti)
+    
 m = int(input())
-
 for i in range(m):
-    line = [float(x) for x in input().split()]
-
-    puncte.append(line)
+    coeficienti = [float(x) for x in input().split()]
+    puncte.append(coeficienti)
 
 for punct in puncte:
-
     output = intersectie(inecuatii, punct)
     print(output)
